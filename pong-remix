@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+        var ballX;
+        var ballY;
+        var ballSpeedX = 5;
+        var ballSpeedY = 5;
+        var paddleHeight = 30;
+        var score=0;
+        function setup() {
+            
+            //size of canvas
+            createCanvas(600, 500);
+            
+            // makes sure cursor doesn't show up on screen
+            noCursor();
+          
+            // where the ball starts in the center of screen
+            ballX = random(width);
+            ballY = random(height / 2);
+        }
+
+        function draw() {
+            // makes the background color grey
+            background(128);
+         fill("yellow")
+            textFont()// the font used
+             textSize(30)
+            text("SCORE: " + score,100,50);// displays score on screen
+            
+            // functions called
+            moveBall();//makes the ball move
+            
+            // a function that akes the abll bounce back if it hits a certain space
+            checkCollide();
+           
+            // it is drawing the paddle that is used
+            drawPaddle();
+            
+            // it is drawing the ball that is being bounced back and forth
+            drawBall();
+        }
+
+        function moveBall() {
+            // makes the ball move and helps the speed increase
+            ballX = ballX + ballSpeedX;
+            ballY = ballY + ballSpeedY;
+             
+              // displays what speed the ball is going at but not on the screen
+            console.log("ballSpeedX: " + ballSpeedX + 
+                               ", ballSpeedY: " + ballSpeedY);
+        }
+
+        function checkCollide() {
+            // makes the ball bounce back towards the other end of screen i
+            if (ballX < 0 || ballX > width) {
+                ballSpeedX = ballSpeedX * -1;
+               
+            }
+           
+            //changes direction of ball if ball touches top
+            if (ballY < 0) {
+                ballSpeedY = ballSpeedY * -1;
+                
+            }
+            
+            //changes direction of ball
+            if (ballY > height - paddleHeight) {
+                if (ballX > mouseX && ballX < mouseX + 200) {
+                    ballSpeedY = ballSpeedY * -1;
+                    score=score+1;
+                }
+                else {
+                   
+                    // when you lose the game the text game over will show
+                    text("GAME OVER!", width / 2, height / 2);
+                    
+                    // it will not repeat thre etxt game over unless you lose again
+                    noLoop();
+                }
+            }
+        }
+
+        function drawBall() {
+            //makes sure that the ball 
+          noStroke();
+            fill("red")
+            // displays the ball and creates it by using variables and using twenty for width and height
+            ellipse(ballX, ballY, 20, 20);
+        }
+
+        function drawPaddle() {
+            //the width of the outer layer of the paddle            
+            strokeWeight(4);
+           fill("green")
+            // drawing the paddle 
+            rect(mouseX, height - paddleHeight - 4, 200, paddleHeight);
+        }
+       
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/aaliyahs9023/p5js/blob/gh-pages/pong-remixed.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body
+
+
+</html>
