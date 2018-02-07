@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+    var score
+    var bubble1;
+    var bubbles = []
+        function setup() {
+            createCanvas(500,500);
+            bubble1 = new Bubble(50,100)
+        score = 0
+        for (var i = 0; i < 10; i++){
+          bubbles.push( new Bubble(random(width),random(height)))
+        }
+             
+        }
+
+        function draw() {
+            background(0);//makes the backgound color black
+            fill(random(255),random(255),random(255))
+             strokeWeight(5)
+            ellipse(mouseX,mouseY,50,50)
+            strokeWeight(10)
+            line(mouseX,mouseY,mouseX+30,mouseY+35)
+            textSize(40);
+            fill(2)
+            text("SCORE: " + score,width/2,50);
+            bubble1.display();
+            bubble1.move();
+
+             for(var i=0; i < bubbles.length; i++){
+          bubbles[i].move();
+          bubbles[i].display();
+          
+          }
+        }
+         
+         
+         
+         function Bubble(x,y){
+             this.x = random(width);
+             this.y = random(height);
+            this.speed = random(0,6);
+            this.move = function (){
+          this.y += this.speed
+          
+          
+          if(this.y < 0){
+              this.y= height
+          }
+        } 
+        this.display = function(){
+             stroke(255)
+             noFill()
+             strokeWeight(10)
+             ellipse(this.x,this.y,50,50)
+            
+         }
+            }
+            
+            
+            
+         function keyPressed(){
+              bubbles.push(new Bubble);
+             
+         }
+        function mousePressed(){
+        for(i = 0; i < bubbles.length; i++){
+         if(mouseX < bubbles[i].x && mouseY < bubbles[i].y){
+         bubbles.splice(i,1)  
+        score+=1;
+        console.log(score); 
+         }
+        }
+         
+        
+         
+        
+          
+         
+             
+             }
+        
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/aaliyahs9023/p5js/blob/master/OBJECTS-PROJECT.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
