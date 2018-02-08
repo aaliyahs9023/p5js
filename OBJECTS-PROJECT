@@ -8,11 +8,11 @@
     <script>
     var score
     var bubble1;
-    var bubbles = []
+    var bubbles = []//object
         function setup() {
             createCanvas(500,500);
             bubble1 = new Bubble(50,100)
-        score = 0
+        score = 0//
         for (var i = 0; i < 10; i++){
           bubbles.push( new Bubble(random(width),random(height)))
         }
@@ -21,16 +21,16 @@
 
         function draw() {
             background(0);//makes the backgound color black
-            fill(random(255),random(255),random(255))
-             strokeWeight(5)
-            ellipse(mouseX,mouseY,50,50)
+            fill(random(255),random(255),random(255))//apart of avatar
+             strokeWeight(5)//avatar
+            ellipse(mouseX,mouseY,50,50)//avatar
             strokeWeight(10)
-            line(mouseX,mouseY,mouseX+30,mouseY+35)
+            line(mouseX,mouseY,mouseX+30,mouseY+35)//avatar
             textSize(40);
             fill(2)
-            text("SCORE: " + score,width/2,50);
-            bubble1.display();
-            bubble1.move();
+            text("SCORE: " + score,width/2,50);//displays the text score on screen
+            bubble1.display();//dispalys bubbles
+            bubble1.move();//makes bubbbles move
 
              for(var i=0; i < bubbles.length; i++){
           bubbles[i].move();
@@ -42,11 +42,11 @@
          
          
          function Bubble(x,y){
-             this.x = random(width);
-             this.y = random(height);
-            this.speed = random(0,6);
+             this.x = random(width);//random width for x coordinate
+             this.y = random(height);// random hieght for y coordinate
+            this.speed = random(0,6);//speed the bubbles go at
             this.move = function (){
-          this.y += this.speed
+          this.y += this.speed // makes the bubbles move on screen
           
           
           if(this.y < 0){
@@ -54,7 +54,7 @@
           }
         } 
         this.display = function(){
-             stroke(255)
+             stroke(255)// what the bubbles are going to look like
              noFill()
              strokeWeight(10)
              ellipse(this.x,this.y,50,50)
@@ -65,15 +65,15 @@
             
             
          function keyPressed(){
-              bubbles.push(new Bubble);
+              bubbles.push(new Bubble);// creates new bubble everytime any key is pressed
              
          }
         function mousePressed(){
         for(i = 0; i < bubbles.length; i++){
          if(mouseX < bubbles[i].x && mouseY < bubbles[i].y){
-         bubbles.splice(i,1)  
-        score+=1;
-        console.log(score); 
+         bubbles.splice(i,1)  // deletes one bubble when it is pressed
+        score+=1;//the score increases
+        console.log(score); // displays score
          }
         }
          
@@ -87,8 +87,8 @@
         
     </script>
 </head>
-
 <body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
     <div id="code" class="container-fluid">
         <script src="https://gist-it.appspot.com/github/aaliyahs9023/p5js/blob/master/OBJECTS-PROJECT.html?footer=0"></script>
     </div>
